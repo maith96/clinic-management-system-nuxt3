@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  // NOTE: You probably want to change this to another database later on
+  provider = "sqlite"
+  // This value is read from the .env file.
+  url      = env("DATABASE_URL")
+}
+
+
+model Example {
+  id          String @id @default(uuid())
+  description String
+  details     String
+}
+
+model Appointment {
+  id            String    @id @default(uuid())
+  doctor Doctor @relation(fields: [doctorId], references: [id])
+  doctorId String
+
+  patient Patient @relation(fields: [patientId], references: [id])
+  patientId String
+
+  dateTime DateTime @unique
+  status String
+}
+
+model Patient {
+  id       String @id @default(uuid())
+  allergies String
+
+  userData User   @relation(fields: [userId], references: [id])
+  userId   String @unique
+
+  appointments Appointment[]
+  diseases Disease[]
+
+}
+
+model Doctor {
+  id       String @id @default(uuid())
+  userData User   @relation(fields: [userId], references: [id])
+  userId   String @unique
+  appointment Appointment[]
+
+}
+
+model Disease {
+  id       String @id @default(uuid())
+  name String
+  symptoms String
+  presccription String
+
+  patient Patient @relation(fields: [patientId], references: [id])
+  patientId String
+
+  allocatedMedicine AllocatedMedicine[]
+}
+
+model AllocatedMedicine {
+  id       String @id @default(uuid())
+  name String
+  quantity String
+  price Float
+  category String
+
+  disease Disease @relation(fields: [diseaseId], references: [id])
+  diseaseId String
+
+  dateTime DateTime
+
+}
+model Medicine {
+   id       String @id @default(uuid())
+   name String
+   quantity String
+   price Float
+   category String
+   code String
+ }
+
+
+model User {
+  id            String    @id @default(uuid())
+  firstName     String
+  lastName      String
+  middleName    String
+  contactNumber Int
+  age           Int
+  weight        Float
+  height        Float
+  gender        String
+  email         String @unique
+  address       String
+  title         String
+  accessLevel   String
+  status        String
+  profilePhoto  String
+  Patient       Patient?
+  Doctor        Doctor?
+}
+
