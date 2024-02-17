@@ -1,14 +1,7 @@
 <template>
-  <div>
-    <button @:click="add">
-      Add
-    </button>
-    <ul>
-      <li v-for="example in examples" :key="example.id">
-        {{ example.id }}
-      </li>
-    </ul>
-  </div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
 
 <script setup lang="ts">
@@ -23,5 +16,6 @@ async function add () {
   examples.value = await $fetch('/api/example', {})
   console.log(examples)
 }
+
 
 </script>
