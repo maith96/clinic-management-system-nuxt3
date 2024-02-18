@@ -14,7 +14,7 @@
       <tbody>
         <tr>
           <td>
-            <NuxtLink to="/patient-" class="hover:underline hover:text-orange-300">
+            <NuxtLink to="/patient/1" class="hover:underline hover:text-orange-300">
               Karanja Peter
             </NuxtLink>
           </td>
@@ -24,7 +24,7 @@
         </tr>
         <tr>
           <td>
-            <NuxtLink to="/" class="hover:underline hover:text-orange-300">
+            <NuxtLink to="/patient/2" class="hover:underline hover:text-orange-300">
               Jane Mercy
             </NuxtLink>
           </td>
@@ -34,8 +34,6 @@
         </tr>
       </tbody>
     </n-table>
-    <button class="px-5 py-2 bg-gray-100 hover:bg-blue-400 mt-10">New Patient</button>
-
     <NewPatientForm />
   </div>
 </template>

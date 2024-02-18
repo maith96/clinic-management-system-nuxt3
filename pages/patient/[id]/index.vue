@@ -1,6 +1,5 @@
 <script setup lang="ts">
 
-import PatientDetails from '~/components/PatientDetails.vue'
 </script>
 
 <template>
